@@ -49,3 +49,4 @@ Temporary Items
 env/
 *.pyc
 *.json
+*.csv
