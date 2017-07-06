@@ -26,13 +26,13 @@ It is also compatible with Python 3
 
 **Parameters** 
 ```
-searchQuery="\<your search query\>" [Required Parameter] 
+searchQuery="<your search query>" [Required Parameter] 
 
-searchEngine="\<your search engine\>" [Options: Google/Bing/Ask/Yandex/Baidu/Yahoo] [Optional  Parameter] [Default: Bing] 
+searchEngine="<your search engine>" [Options: Google/Bing/Ask/Yandex/Baidu/Yahoo] [Optional  Parameter] [Default: Bing] 
 
-pages=\<pages to crawl\> [Number of pages to crawl] [Optional Parameter] Default: 3] 
+pages=<pages to crawl> [Number of pages to crawl] [Optional Parameter] Default: 3] 
 
--o \<filename\> [Output the resulta to a file] [Optional Parameter] [Supported:json/jsonl/csv/xml]
+-o <filename> [Output the resulta to a file] [Optional Parameter] [Supported:json/jsonl/csv/xml]
 ```
 
 **Examples** 
