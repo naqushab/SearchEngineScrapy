@@ -1,19 +1,16 @@
-# SearchEngineScrapy - Scrape data from Google.com, Bing.com, Baidu.com, Ask.com, DuckDuckGo.com 
+# SearchEngineScrapy - Scrape data from Google.com, Bing.com, Baidu.com, Ask.com, Yahoo.com, Yandex.com,  
 
- [![Python 3.5](https://img.shields.io/badge/Python-3.5-yellow.svg)](http://www.python.org/download/) [![Python 2.7](https://img.shields.io/badge/Python-2.7-yellow.svg)](http://www.python.org/download/)
+ [![Python](https://img.shields.io/badge/Python-2.7%2C%203.6-brightgreen.svg)](http://www.python.org/download/) [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
 
 ## Intro
 
 SearchEngineScrapy is a web crawler and scraper for scraping data off
-various search engines such as Google.com, Bing.com, DuckDuckGo,
-Ask.com, Baidu It is based on Python Scrapy project and is developed
+various search engines such as Google.com, Bing.com, Yahoo.com,
+Ask.com, Baidu.com, Yandex.com It is based on Python Scrapy project and is developed
 using Python 2.7
 
 It is also compatible with Python 3
 
-## Licensing
-
-### TODO
 
 ## Setup
 
@@ -31,7 +28,7 @@ It is also compatible with Python 3
 ```
 searchQuery="\<your search query\>" [Required Parameter] 
 
-searchEngine="\<your search engine\>" [Options: Google/Bing] [Optional  Parameter] [Default: Bing] 
+searchEngine="\<your search engine\>" [Options: Google/Bing/Ask/Yandex/Baidu/Yahoo] [Optional  Parameter] [Default: Bing] 
 
 pages=\<pages to crawl\> [Number of pages to crawl] [Optional Parameter] Default: 3] 
 
@@ -50,12 +47,7 @@ scrapy crawl SearchEngineScrapy -a searchQuery="I'm Batman" -a searchEngine="Goo
 ## TODO
 
 -   Add support for DDG
--   Add support for Baidu
--   Add support for Ask.com
--   Add support for Chacha.com
 -   Ability to provide parameter of what to save
 -   Ability to export to various formats (currently limited to JSON,
     JSONLINES, CSV, XML)
-
-## Contributing
-### TODO
+-   Contributing section
