@@ -7,5 +7,7 @@
 
 
 class SearchenginescrapyPipeline(object):
+
     def process_item(self, item, spider):
+        wget.download(item['url'])
         return item
