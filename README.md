@@ -17,7 +17,7 @@ It is also compatible with Python 3
 ```
     virtualenv --python="which python" env
     env/bin/activate
-    git clone hhttps://github.com/naqushab/SearchEngineScrapy.git
+    git clone https://github.com/naqushab/SearchEngineScrapy.git
     cd SearchEngineScrapy
     pip install -r requirements.txt
 ```
