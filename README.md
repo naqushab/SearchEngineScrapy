@@ -1,21 +1,19 @@
 # SearchEngineScrapy - Scrape data from Google.com, Bing.com, Baidu.com, Ask.com, Yahoo.com, Yandex.com,  
 
- [![Python 3](https://img.shields.io/badge/Python-3.6-brightgreen.svg)](https://docs.python.org/3) [![Python 2](https://img.shields.io/badge/Python-2.7-brightgreen.svg)](https://docs.python.org/2) [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
+[![Python 2](https://img.shields.io/badge/Python-2.7-brightgreen.svg)](https://docs.python.org/2) [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]()
 
 ## Intro
 
 SearchEngineScrapy is a web crawler and scraper for scraping data off
 various search engines such as Google.com, Bing.com, Yahoo.com,
 Ask.com, Baidu.com, Yandex.com It is based on Python Scrapy project and is developed
-using Python 3.6
-
-It is also compatible with Python 2.7
+using Python 2.7
 
 
 ## Setup
 
 ```
-    virtualenv --python="which python" env
+    virtualenv --python="2" env
     env/bin/activate
     git clone https://github.com/naqushab/SearchEngineScrapy.git
     cd SearchEngineScrapy
