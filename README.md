@@ -46,7 +46,7 @@ pages=<pages to crawl> [Number of pages to crawl] [Optional Parameter : Default:
 
 ***Params***
 
-<filename> [Output the resulta to a file] [Optional Parameter] [Supported:json/jsonl/csv/xml]
+<filename> [Output the results to a file] [Optional Parameter] [Supported:json/jsonl/csv/xml]
 
 
 ### Examples 
