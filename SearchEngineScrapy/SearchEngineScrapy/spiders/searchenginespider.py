@@ -42,7 +42,7 @@ class SearchEngineScrapy(Spider):
             'jpeg': 'image/jpeg',
             'png': 'image/png'
         }
-        if urlInfo.headers['content-type'] == fileType_dict[fileType]:
+        if urlInfo.headers['content-type'] == fileType_dict.get(fileType, "None"):
             return True
         else:
             False
