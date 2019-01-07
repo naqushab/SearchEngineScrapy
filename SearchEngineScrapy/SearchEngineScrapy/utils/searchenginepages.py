@@ -17,7 +17,9 @@ class SearchEngineURLs:
         return  self
 
     def _currentUrl(self):
-        if self.searchEngine == "google" or self.searchEngine == "bing" or self.searchEngine == "baidu":
+        if self.searchEngine == "google":
+            return self.searchEngineBaseUrl.format(self.searchQuery, str(self.currentPage  * 100))
+        elif self.searchEngine == "bing" or self.searchEngine == "baidu":
             return self.searchEngineBaseUrl.format(self.searchQuery, str(self.currentPage  * 10))
         elif self.searchEngine == "ask" or self.searchEngine == "yandex":
             return self.searchEngineBaseUrl.format(self.searchQuery, str(self.currentPage))
