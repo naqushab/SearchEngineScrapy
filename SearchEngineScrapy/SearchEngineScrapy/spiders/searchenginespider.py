@@ -31,13 +31,29 @@ class SearchEngineScrapy(Spider):
 
         for url in pageUrls:
             self.start_urls.append(url)
+
+    def is_filetype(self, fileType, urlInfo):
+        fileType_dict = {
+            'pdf': 'application/pdf',
+            'csv': 'text/csv',
+            'zip': 'application/zip',
+            'doc': 'application/msword',
+            'docx': 'application/msword',
+            'jpeg': 'image/jpeg',
+            'png': 'image/png'
+        }
+        if urlInfo.headers['content-type'] == fileType_dict[fileType]:
+            return True
+        else:
+            False
     
     def parse(self, response):
         for url in Selector(response).xpath(self.selector).extract():
             if self.searchEngine == "google":
                 url = "https://www.google.com{}".format(url)
-            redirected_url = requests.head(url, allow_redirects=True).url
-            print("Scraped URL : {0}".format(redirected_url))
-            yield { 'url': redirected_url }
+            urlInfo = requests.head(url, allow_redirects=True)
+            url = urlInfo.url
+            if self.is_filetype(self.fileType, urlInfo):
+                yield { 'url': url }
         
         pass
