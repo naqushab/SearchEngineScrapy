@@ -46,7 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-env/
+venv/
 *.pyc
 *.json
 *.csv
