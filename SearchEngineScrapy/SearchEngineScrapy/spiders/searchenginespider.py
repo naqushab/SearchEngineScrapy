@@ -4,6 +4,8 @@ from scrapy.spider import Spider
 from SearchEngineScrapy.utils.searchengines import SearchEngineResultSelector
 from SearchEngineScrapy.utils.searchenginepages import SearchEngineURLs
 
+import requests
+
 class SearchEngineScrapy(Spider):
     name = "SearchEngineScrapy"
 
@@ -32,6 +34,10 @@ class SearchEngineScrapy(Spider):
     
     def parse(self, response):
         for url in Selector(response).xpath(self.selector).extract():
-            yield { 'url': url }
+            if self.searchEngine == "google":
+                url = "https://www.google.com{}".format(url)
+            redirected_url = requests.head(url, allow_redirects=True).url
+            print("Scraped URL : {0}".format(redirected_url))
+            yield { 'url': redirected_url }
         
         pass
