@@ -72,7 +72,7 @@ class SearchEngineScrapy(Spider):
                 else:
                     fname = url.split("/")[-1]
                 fname = re.sub(r'[^.,a-zA-Z0-9]+', ' ', fname)
-                fname = os.path.join(self.downloadsFolder, fname)
+                fname = os.path.join(self.downloadFolder, fname)
                 self.downloadfile(url, fname)
                 yield { 'url': url }
         
