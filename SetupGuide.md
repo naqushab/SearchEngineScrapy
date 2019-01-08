@@ -1,4 +1,4 @@
-## Mac Setup Guide  
+## Mac Setup Guide  to Install Web Crawler
   
 Note: All `grey highlighted` lines are terminal commands. You can do this in a single shell window.
 
