@@ -9,9 +9,9 @@ Type `python --version` to see if you have Python 2.7 installed.
 If you don't have Python 2.7, use Homebrew to install it. _Otherwise, skip this step and move to Step 2._
   
 Type command:  
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  (This installs Homebrew)
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  (This installs Homebrew)  
 `export PATH="/usr/local/bin:/usr/local/sbin:$PATH"`  
-`brew install python@2`  (This installs Python2)
+`brew install python@2`  (This installs Python2)  
 `export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"`  
    
 **Step 2:**  
