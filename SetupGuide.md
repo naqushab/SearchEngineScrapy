@@ -47,7 +47,7 @@ use Command:
 _Run commands now to crawl the results:_  
 Example (To crawl 5 pages of Google search results for PDFs with keyword 'Machine Learning' and store URLs in output_filename.csv):  
    
-`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Google" -a pages=5 -o output_filename.csv`   
+`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Google" -a pages=1 -o output_filename.csv`   
 
 (output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning')
   
