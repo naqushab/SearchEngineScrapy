@@ -68,6 +68,7 @@ class SearchEngineScrapy(Spider):
                     fname = re.findall("filename=(.+)", urlInfo.headers["Content-Disposition"])[0]
                 else:
                     fname = url.split("/")[-1]
+                fname = re.sub(r'[^.,a-zA-Z0-9]+', ' ', fname)
                 fname = os.path.join(self.downloadsFolder, fname)
                 self.downloadfile(url, fname)
                 yield { 'url': url }
