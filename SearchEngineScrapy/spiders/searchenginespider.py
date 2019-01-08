@@ -51,9 +51,11 @@ class SearchEngineScrapy(Spider):
         for url in Selector(response).xpath(self.selector).extract():
             if self.searchEngine == "google":
                 url = "https://www.google.com{}".format(url)
-            urlInfo = requests.head(url, allow_redirects=True)
-            url = urlInfo.url
-            if self.is_filetype(self.fileType, urlInfo):
+                urlInfo = requests.head(url, allow_redirects=True)
+                url = urlInfo.url
+                if self.is_filetype(self.fileType, urlInfo):
+                    yield { 'url': url }
+            else:
                 yield { 'url': url }
         
         pass
