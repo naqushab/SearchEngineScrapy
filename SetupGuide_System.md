@@ -5,44 +5,21 @@ Note: All `grey highlighted` lines are terminal commands. You can do this in a s
 ### Before Setting Up crawler  
 
 **Step 1:**  
-You need to have Homebrew (package manager for Mac) on you mac.  
-You can check if it is installed by typing: `brew --version`  
-If you don't have Homebrew, use below command to install it. _Otherwise, skip this step and move to Step 2._  
-    
-Type command:  
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  
-(This installs Homebrew)  
-   
-**Step 2:**  
-You need to install Python 2. The below command will check if system has Homebrew Python and will install it if it not present. This will ensure that System python is not touched in the process.  
-`brew install python@2`  
-(This installs latest Python2)  
-   
-**Step 3:**  
-_pip_ and _virtualenv_ are two more things required for the crawler.  
+_pip_ is required for the crawler.  
 To Install _pip_,  
 use Command:  
-`easy_install pip`  
+`sudo easy_install pip`  
 (Type `pip --version` to see if it is installed correctly)  
-   
-To Install _virtualenv_,  
-use Command:  
-`pip install virtualenv`   
-(Type `virtualenv --version` to see if it is installed correctly)  
   
   
 ### Setting up crawler  
 1. Copy SearchEngineScrapy folder from location provided to you to any directory (Example: ~/Documents/)  
-2. `cd SearchEngineScrapy`   
-3. `virtualenv -p python venv`  
-4. `source venv/bin/activate`  
-5. `pip install -r requirements.txt`  (You need to re-run this command if this throws an error after accepting prompt to install xcode cmdline tools.)
+2. `cd SearchEngineScrapy`    
+5. `sudo pip install -r requirements.txt --ignore-installed`  (You need to re-run this command if this throws an error after accepting prompt to install xcode cmdline tools.)
   
   
 ### Running the Crawler  
-1. Goto SearchEngineScrapy folder  (Example : `cd ~/Documents/SearchEngineScrapy/` : If it placed in Documents)  
-2. `source venv/bin/activate` (Activate virtualenv)  
-   
+1. Goto SearchEngineScrapy folder  (Example : `cd ~/Documents/SearchEngineScrapy/` : If it placed in Documents)     
   
 _Run commands now to crawl the results:_  
 Example (To crawl 5 pages of search results for PDFs with keyword 'Machine Learning' and store URLs in output_filename.csv):  
@@ -66,8 +43,4 @@ To use Google Search Engine:
   
   
 ### Downloading the crawled results   
-1. Install aria2 :   
-`brew install aria2`  
-2. Download all the files using command:  
-`aria2c --input-file=pdfs_finalg.csv --max-concurrent-downloads=6 --dir=downloads/`   
-(This will download all URL files in downloads folder which is in the scrapy output csv)
+TO-DO
