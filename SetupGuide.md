@@ -1,17 +1,21 @@
 ## Mac Setup Guide  
   
 ### Before Setting Up crawler  
+
+**Step 1:**  
 You need to have python installation on your mac.  
 Type `which python` to see if you have Python 2.7 installed.  
   
   
-If you don't have Python 2.7, install Homebrew to install it. Otherwise, skip this step.  
+If you don't have Python 2.7, install Homebrew to install it. _Otherwise, skip this step to install pip and virtualenv._
+  
 Type command:  
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  
 `export PATH="/usr/local/bin:/usr/local/sbin:$PATH"`  
 `brew install python@2`  
 `export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"`  
   
+**Step 2:**  
 `pip` and `virtualenv` are two more things required for the crawler.  
 To Install `pip`,  
 use Command:  
@@ -35,8 +39,8 @@ use Command:
 3. `source venv/bin/activate` (Activate virtualenv)  
 4. `cd SearchEngineScrapy`  
   
-Run commands now to crawl the results:  
-Example:  
+_Run commands now to crawl the results:_  
+Example (To crawl 5 pages of Google search results for PDFs with keyword Adobe and store URLs in output_filename.csv):  
 *(venv) ~/Documents/SearchEngineScrapy/SearchEngineScrapy*> `scrapy crawl SearchEngineScrapy -a searchQuery="Adobe" -a fileType="pdf" -a searchEngine="Google" -a pages=5 -o output_filename.csv`   
   
 ### Parameters of the Crawler  
