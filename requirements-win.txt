@@ -2,4 +2,3 @@ lxml
 pypiwin32
 Scrapy
 requests
-wget

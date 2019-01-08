@@ -40,4 +40,4 @@ To use Bing Search Engine:
   
   
 ### Downloading the crawled results   
-Files are automatically downloaded and placed in downloads folder
+Files are automatically downloaded and placed in downloads folder (Uses system curl to achieve this.)

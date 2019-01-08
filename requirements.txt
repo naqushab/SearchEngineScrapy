@@ -1,4 +1,3 @@
 lxml
 Scrapy
 requests
-wget
