@@ -44,11 +44,10 @@ Example (To crawl 5 pages of Google search results for PDFs with keyword Adobe a
 *(venv) ~/Documents/SearchEngineScrapy/SearchEngineScrapy*> `scrapy crawl SearchEngineScrapy -a searchQuery="Adobe" -a fileType="pdf" -a searchEngine="Google" -a pages=5 -o output_filename.csv`   
   
 ### Parameters of the Crawler  
-Prefix : `-a`  
-searchQuery="<your search query>" [Required Parameter]   
-fileType="<filetype you want to search for>" [Options: pdf/csv/zip/doc/docx/jpeg/png] [Required Parameter]  
-searchEngine="<your search engine>" [Options: Google/Bing(Default)] [Optional Parameter]   
-pages=<number of pages to crawl> [Default: 3] [Optional Parameter]  
-  
-Prefix : `-o`  
-<filename> [Output the results to a file] [Options: json/jsonl/csv/xml] [Optional Parameter]  
+| Parameter       | Prefix | Description                                  | Options                       | Required | Default |
+|-----------------|--------|----------------------------------------------|-------------------------------|----------|---------|
+| searchQuery     | -a     | Search Query                                 | -                             | Y        | -       |
+| fileType        | -a     | Filetype that you want to search for         | pdf/csv/zip/doc/docx/jpeg/png | Y        | -       |
+| searchEngine    | -a     | Search Engine you want to use                | Google/Bing                   | N        | Bing    |
+| pages           | -a     | Number of pages to crawl                     | -                             | N        | 3       |
+| output_filename | -o     | name of output file where results are dumped | json/jsonl/csv/xml            | N        | -       |
