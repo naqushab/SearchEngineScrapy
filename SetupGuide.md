@@ -35,12 +35,14 @@ use Command:
 ### Running the Crawler  
 1. Goto SearchEngineScrapy folder  (Example : `cd ~/Documents/SearchEngineScrapy/` : If it placed in Documents)  
 2. `source venv/bin/activate` (Activate virtualenv)  
-3. `cd SearchEngineScrapy`  
+   
   
 _Run commands now to crawl the results:_  
 Example (To crawl 5 pages of Google search results for PDFs with keyword Adobe and store URLs in output_filename.csv):  
    
 `scrapy crawl SearchEngineScrapy -a searchQuery="Adobe" -a fileType="pdf" -a searchEngine="Google" -a pages=5 -o output_filename.csv`   
+
+(output_filename will contain URLs that are of filetype: pdf and query: Adobe)
   
 ### Parameters of the Crawler  
 | Parameter       | Prefix | Description                                  | Options                       | Required | Default |
