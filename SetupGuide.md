@@ -3,25 +3,30 @@
 ### Before Setting Up crawler  
 
 **Step 1:**  
-You need to have python installation on your mac.  
-Type `python --version` to see if you have Python 2.7 installed.    
-  
-If you don't have Python 2.7, use Homebrew to install it. _Otherwise, skip this step and move to Step 2._
-  
+You need to have Homebrew on you mac.  
+You can check if it is installed by typing: `brew --version`  
+If you don't have Homebrew, use below command to install it. _Otherwise, skip this step and move to Step 2._  
+    
 Type command:  
-`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  (This installs Homebrew)  
-`export PATH="/usr/local/bin:/usr/local/sbin:$PATH"`  
-`brew install python@2`  (This installs Python2)  
-`export PATH="/usr/local/opt/python@2/libexec/bin:$PATH"`  
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  
+(This installs Homebrew)  
    
 **Step 2:**  
+You need to install Python 2 now. The below command will install Python 2.
+`brew install python@2`  
+(This installs Python2)  
+   
+**Step 3:**  
 `pip` and `virtualenv` are two more things required for the crawler.  
 To Install `pip`,  
 use Command:  
-`sudo easy_install pip` (Type `pip --version` to see if it is installed correctly)  
+`easy_install pip`  
+(Type `pip --version` to see if it is installed correctly)  
+   
 To Install `virtualenv`,  
 use Command:  
-`sudo easy_install virtualenv`   (Type `virtualenv --version` to see if it is installed correctly)  
+`pip install virtualenv`   
+(Type `virtualenv --version` to see if it is installed correctly)  
   
   
 ### Setting up crawler  
