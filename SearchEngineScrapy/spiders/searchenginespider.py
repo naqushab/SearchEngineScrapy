@@ -5,9 +5,9 @@ from SearchEngineScrapy.utils.searchengines import SearchEngineResultSelector
 from SearchEngineScrapy.utils.searchenginepages import SearchEngineURLs
 
 import os
-import ssl
+import re
+import subprocess
 import requests
-import wget
 
 class SearchEngineScrapy(Spider):
     name = "SearchEngineScrapy"
@@ -53,6 +53,9 @@ class SearchEngineScrapy(Spider):
         else:
             False
     
+    def downloadfile(self, url,  fname):
+        subprocess.call(["curl", "-o", fname, url])
+
     def parse(self, response):
         for url in Selector(response).xpath(self.selector).extract():
             if self.searchEngine == "google":
@@ -60,8 +63,13 @@ class SearchEngineScrapy(Spider):
             urlInfo = requests.head(url, allow_redirects=True, verify=False)
             url = urlInfo.url
             if self.is_filetype(self.fileType, urlInfo):
-                ssl._create_default_https_context = ssl._create_unverified_context
-                wget.download(url, out=self.downloadsFolder)
+                fname = ''
+                if "Content-Disposition" in urlInfo.headers.keys():
+                    fname = re.findall("filename=(.+)", urlInfo.headers["Content-Disposition"])[0]
+                else:
+                    fname = url.split("/")[-1]
+                fname = os.path.join(self.downloadsFolder, fname)
+                self.downloadfile(url, fname)
                 yield { 'url': url }
         
         pass
