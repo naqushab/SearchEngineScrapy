@@ -43,4 +43,4 @@ To use Google Search Engine:
   
   
 ### Downloading the crawled results   
-TO-DO
+Files are automatically downloaded and placed in downloads folder
