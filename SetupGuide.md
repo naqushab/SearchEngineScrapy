@@ -12,7 +12,7 @@ Type command:
 (This installs Homebrew)  
    
 **Step 2:**  
-You need to install Python 2 now. The below command will install Python 2.
+You need to install Python 2 now. The below command will install Python 2.  
 `brew install python@2`  
 (This installs Python2)  
    
