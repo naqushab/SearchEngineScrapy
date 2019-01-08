@@ -65,6 +65,9 @@ To use Google Search Engine:
 | output_filename | -o     | name of output file where results are dumped | json/jsonl/csv/xml            | N        | -       |
   
   
-### Downloading the crawled results  
-1. Goto SearchEngineScrapy folder  (Example : `cd ~/Documents/SearchEngineScrapy/` : If it placed in Documents)  
-2. `source venv/bin/activate` (Activate virtualenv)  
+### Downloading the crawled results   
+1. Install aria2 :   
+`brew install aria2`  
+2. Download all the files using command:  
+`aria2c -i pdfs_finalg.csv -d downloads/`   
+(This will download all URL files in downloads folder)
