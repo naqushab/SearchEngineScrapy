@@ -19,13 +19,13 @@ You need to install Python 2. The below command will check if system has Homebre
 (This installs latest Python2)  
    
 **Step 3:**  
-`pip` and `virtualenv` are two more things required for the crawler.  
-To Install `pip`,  
+_pip_ and _virtualenv_ are two more things required for the crawler.  
+To Install _pip_,  
 use Command:  
 `easy_install pip`  
 (Type `pip --version` to see if it is installed correctly)  
    
-To Install `virtualenv`,  
+To Install _virtualenv_,  
 use Command:  
 `pip install virtualenv`   
 (Type `virtualenv --version` to see if it is installed correctly)  
@@ -47,7 +47,11 @@ use Command:
 _Run commands now to crawl the results:_  
 Example (To crawl 5 pages of Google search results for PDFs with keyword 'Machine Learning' and store URLs in output_filename.csv):  
    
-`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Google" -a pages=1 -o output_filename.csv`   
+To use Bing Search Engine:  
+`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Bing" -a pages=1 -o output_filename_bing.csv`   
+
+To use Google Search Engine:  
+`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Google" -a pages=1 -o output_filename_google.csv`   
 
 (output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning')
   
@@ -59,3 +63,8 @@ Example (To crawl 5 pages of Google search results for PDFs with keyword 'Machin
 | searchEngine    | -a     | Search Engine you want to use                | Google/Bing                   | N        | Bing    |
 | pages           | -a     | Number of pages to crawl                     | -                             | N        | 3       |
 | output_filename | -o     | name of output file where results are dumped | json/jsonl/csv/xml            | N        | -       |
+  
+  
+### Downloading the crawled results  
+1. Goto SearchEngineScrapy folder  (Example : `cd ~/Documents/SearchEngineScrapy/` : If it placed in Documents)  
+2. `source venv/bin/activate` (Activate virtualenv)  
