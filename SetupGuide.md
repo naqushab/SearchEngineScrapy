@@ -1,6 +1,6 @@
 ## Mac Setup Guide  
   
-Note: All grey highlighted lines are terminal commands. You can do this in a single shell window.
+Note: All `grey highlighted` lines are terminal commands. You can do this in a single shell window.
 
 ### Before Setting Up crawler  
 
