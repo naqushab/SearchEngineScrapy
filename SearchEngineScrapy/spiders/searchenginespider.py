@@ -33,7 +33,8 @@ class SearchEngineScrapy(Spider):
             self.downloadFolder = downloadFolder
         else:
             self.downloadFolder = os.path.join(os.getcwd(), "downloads")
-            os.makedirs(self.downloadFolder)
+            if not os.path.isdir(self.downloadFolder):
+                os.makedirs(self.downloadFolder)
 
         pageUrls = SearchEngineURLs(self.searchQuery, self.searchEngine, self.pages)
         self.selector = SearchEngineResultSelector[self.searchEngine]
