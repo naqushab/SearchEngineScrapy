@@ -1,4 +1,4 @@
-## Mac Setup Guide  to Install Web Crawler
+## Mac Setup Guide to Install Web Crawler
   
 Note: All `grey highlighted` lines are terminal commands. You can do this in a single shell window.
 
@@ -25,19 +25,16 @@ _Run commands now to crawl the results:_
 Example (To crawl 5 pages of search results for PDFs with keyword 'Machine Learning' and store URLs in output_filename.csv):  
    
 To use Bing Search Engine:  
-`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Bing" -a pages=5 -o output_filename_bing.csv`   
+`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Bing" -a pages=5 -o output_filename_bing.csv`    
 
-To use Google Search Engine:  
-`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="Google" -a pages=5 -o output_filename_google.csv`   
-
-(output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning')
+(output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning' and a downloads folder will be created that will have all the files downloaded.)
   
 ### Parameters of the Crawler  
 | Parameter       | Prefix | Description                                  | Options                       | Required | Default |
 |-----------------|--------|----------------------------------------------|-------------------------------|----------|---------|
 | searchQuery     | -a     | Search Query                                 | -                             | Y        | -       |
 | fileType        | -a     | Filetype that you want to search for         | pdf/csv/zip/doc/docx/jpeg/png | Y        | -       |
-| searchEngine    | -a     | Search Engine you want to use                | Google/Bing                   | N        | Bing    |
+| searchEngine    | -a     | Search Engine you want to use                | Bing                   | N        | Bing    |
 | pages           | -a     | Number of pages to crawl                     | -                             | N        | 3       |
 | output_filename | -o     | name of output file where results are dumped | json/jsonl/csv/xml            | N        | -       |
   
