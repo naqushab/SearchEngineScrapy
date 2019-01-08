@@ -36,7 +36,7 @@ use Command:
 2. `cd SearchEngineScrapy`   
 3. `virtualenv -p python venv`  
 4. `source venv/bin/activate`  
-5. `pip install -r requirements.txt`  (You need to re-run this command if this throws an error.)
+5. `pip install -r requirements.txt`  (You need to re-run this command if this throws an error after accepting prompt to install xcode cmdline tools.)
   
   
 ### Running the Crawler  
