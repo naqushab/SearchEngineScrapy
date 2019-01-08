@@ -25,7 +25,7 @@ _Run commands now to crawl the results:_
 Example (To crawl 5 pages of search results for PDFs with keyword 'Machine Learning', store URLs in output_filename.csv and download the files in the downloadFolder mentioned):  
    
 To use Bing Search Engine:  
-`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="bing" -a pages=5 -a downloadFolder=/path/to/download_folder/ -o pdfs_final_bing.csv`    
+`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="bing" -a pages=5 -a downloadFolder=/path/to/download_folder/ -o output_filename.csv`    
 
 (output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning' and a downloads folder will be created that will have all the files downloaded.)
   

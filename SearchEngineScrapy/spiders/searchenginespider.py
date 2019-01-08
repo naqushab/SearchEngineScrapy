@@ -19,9 +19,9 @@ class SearchEngineScrapy(Spider):
     searchEngine = None
     fileType = None
     selector = None
-    downloadsFolder = os.path.join(os.getcwd(), "downloads")
+    downloadFolder = None
 
-    def __init__(self, searchQuery, fileType, searchEngine = "bing", pages = 3, *args, **kwargs):
+    def __init__(self, searchQuery, fileType, downloadFolder = "", searchEngine = "bing", pages = 3, *args, **kwargs):
         super(SearchEngineScrapy, self).__init__(*args, **kwargs)
         self.searchQuery = searchQuery.lower()
         self.fileType = fileType.lower()
@@ -29,8 +29,11 @@ class SearchEngineScrapy(Spider):
             self.searchQuery = "{0} filetype:{1}".format(self.searchQuery, self.fileType)
         self.searchEngine = searchEngine.lower()
         self.pages = int(pages)
-        if not os.path.isdir(self.downloadsFolder):
-            os.makedirs(self.downloadsFolder)
+        if os.path.isdir(downloadFolder):
+            self.downloadFolder = downloadFolder
+        else:
+            self.downloadFolder = os.path.join(os.getcwd(), "downloads")
+            os.makedirs(self.downloadFolder)
 
         pageUrls = SearchEngineURLs(self.searchQuery, self.searchEngine, self.pages)
         self.selector = SearchEngineResultSelector[self.searchEngine]
