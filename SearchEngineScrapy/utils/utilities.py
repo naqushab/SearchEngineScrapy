@@ -1,4 +1,6 @@
 import re
+import errno    
+import os
 
 class Utilities:
 
@@ -34,3 +36,13 @@ class Utilities:
             fname = ''.join(fname.split('.')[0:-1])
             fname = "{0}.{1}".format(fname, fileType)
         return fname
+
+    def create_folder_structure(self, path):
+        try:
+            os.makedirs(path)
+        except OSError as exc:  # Python >2.5
+            if exc.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else:
+                raise ("Directory cannot be made due to OS error, select another path")
+        return path

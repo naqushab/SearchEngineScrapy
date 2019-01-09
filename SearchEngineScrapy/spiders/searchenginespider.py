@@ -37,9 +37,10 @@ class SearchEngineScrapy(Spider):
             if os.path.isdir(downloadFolder):
                 self.downloadFolder = downloadFolder
             else:
-                if not os.path.isdir(os.path.join(os.getcwd(), "downloads")):
-                    os.makedirs(os.path.join(os.getcwd(), "downloads"))
-                self.downloadFolder = os.path.join(os.getcwd(), "downloads")
+                output_path = Utilities().create_folder_structure(downloadFolder)
+                if not os.path.isdir(output_path):
+                    raise ("Directory cannot be made due to OS error, select another path")
+                self.downloadFolder = output_path
 
         pageUrls = SearchEngineURLs(self.searchQuery, self.searchEngine, self.pages)
         self.selector = SearchEngineResultSelector[self.searchEngine]
