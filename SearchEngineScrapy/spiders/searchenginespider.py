@@ -20,6 +20,7 @@ class SearchEngineScrapy(Spider):
     fileType = None
     selector = None
     downloadFolder = None
+    downloadFiles = False
 
     def __init__(self, searchQuery, fileType, downloadFolder = "", searchEngine = "bing", pages = 3, *args, **kwargs):
         super(SearchEngineScrapy, self).__init__(*args, **kwargs)
@@ -29,12 +30,15 @@ class SearchEngineScrapy(Spider):
             self.searchQuery = "{0} filetype:{1}".format(self.searchQuery, self.fileType)
         self.searchEngine = searchEngine.lower()
         self.pages = int(pages)
-        if os.path.isdir(downloadFolder):
-            self.downloadFolder = downloadFolder
+        if downloadFolder == "":
+            self.downloadFiles = False
         else:
-            self.downloadFolder = os.path.join(os.getcwd(), "downloads")
-            if not os.path.isdir(self.downloadFolder):
-                os.makedirs(self.downloadFolder)
+            self.downloadFiles = True
+            if os.path.isdir(downloadFolder):
+                self.downloadFolder = downloadFolder
+            else:
+                os.makedirs(os.path.join(os.getcwd(), "downloads"))
+                self.downloadFolder = os.path.join(os.getcwd(), "downloads")
 
         pageUrls = SearchEngineURLs(self.searchQuery, self.searchEngine, self.pages)
         self.selector = SearchEngineResultSelector[self.searchEngine]
@@ -56,9 +60,6 @@ class SearchEngineScrapy(Spider):
             return True
         else:
             False
-    
-    def downloadfile(self, url,  fname):
-        subprocess.call(["curl", "-o", fname, url])
 
     def parse(self, response):
         for url in Selector(response).xpath(self.selector).extract():
@@ -73,8 +74,8 @@ class SearchEngineScrapy(Spider):
                 else:
                     fname = url.split("/")[-1]
                 fname = re.sub(r'[^.,a-zA-Z0-9]+', ' ', fname)
-                fname = os.path.join(self.downloadFolder, fname)
-                self.downloadfile(url, fname)
+                if self.downloadFiles:
+                    fname = os.path.join(self.downloadFolder, fname)
+                    subprocess.call(["curl", "-o", fname, url])
                 yield { 'url': url }
-        
         pass
