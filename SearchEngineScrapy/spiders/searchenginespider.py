@@ -3,9 +3,9 @@ from scrapy.spider import Spider
 
 from SearchEngineScrapy.utils.searchengines import SearchEngineResultSelector
 from SearchEngineScrapy.utils.searchenginepages import SearchEngineURLs
+from SearchEngineScrapy.utils.utilities import Utilities
 
 import os
-import re
 import subprocess
 import requests
 
@@ -37,7 +37,8 @@ class SearchEngineScrapy(Spider):
             if os.path.isdir(downloadFolder):
                 self.downloadFolder = downloadFolder
             else:
-                os.makedirs(os.path.join(os.getcwd(), "downloads"))
+                if not os.path.isdir(os.path.join(os.getcwd(), "downloads")):
+                    os.makedirs(os.path.join(os.getcwd(), "downloads"))
                 self.downloadFolder = os.path.join(os.getcwd(), "downloads")
 
         pageUrls = SearchEngineURLs(self.searchQuery, self.searchEngine, self.pages)
@@ -46,34 +47,14 @@ class SearchEngineScrapy(Spider):
         for url in pageUrls:
             self.start_urls.append(url)
 
-    def is_filetype(self, fileType, urlInfo):
-        fileType_dict = {
-            'pdf': 'application/pdf',
-            'csv': 'text/csv',
-            'zip': 'application/zip',
-            'doc': 'application/msword',
-            'docx': 'application/msword',
-            'jpeg': 'image/jpeg',
-            'png': 'image/png'
-        }
-        if urlInfo.headers['content-type'] == fileType_dict.get(fileType, "None"):
-            return True
-        else:
-            False
-
     def parse(self, response):
         for url in Selector(response).xpath(self.selector).extract():
             if self.searchEngine == "google":
                 url = "https://www.google.com{}".format(url)
             urlInfo = requests.head(url, allow_redirects=True, verify=False)
             url = urlInfo.url
-            if self.is_filetype(self.fileType, urlInfo):
-                fname = ''
-                if "Content-Disposition" in urlInfo.headers.keys():
-                    fname = re.findall("filename=(.+)", urlInfo.headers["Content-Disposition"])[0]
-                else:
-                    fname = url.split("/")[-1]
-                fname = re.sub(r'[^.,a-zA-Z0-9]+', ' ', fname)
+            if Utilities().is_filetype(self.fileType, urlInfo):
+                fname = Utilities().get_filename(self.fileType, url, urlInfo)
                 if self.downloadFiles:
                     fname = os.path.join(self.downloadFolder, fname)
                     subprocess.call(["curl", "-o", fname, url])
