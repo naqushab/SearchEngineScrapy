@@ -22,22 +22,22 @@ class SearchEngineScrapy(Spider):
     downloadFolder = None
     downloadFiles = False
 
-    def __init__(self, searchQuery, fileType, downloadFolder = "", searchEngine = "bing", pages = 3, *args, **kwargs):
+    def __init__(self, searchquery, filetype, downloadfolder = "", searchengine = "bing", pages = 3, *args, **kwargs):
         super(SearchEngineScrapy, self).__init__(*args, **kwargs)
-        self.searchQuery = searchQuery.lower()
-        self.fileType = fileType.lower()
-        if fileType is not None:
+        self.searchQuery = searchquery.lower()
+        self.fileType = filetype.lower()
+        if filetype is not None:
             self.searchQuery = "{0} filetype:{1}".format(self.searchQuery, self.fileType)
-        self.searchEngine = searchEngine.lower()
+        self.searchEngine = searchengine.lower()
         self.pages = int(pages)
-        if downloadFolder == "":
+        if downloadfolder == "":
             self.downloadFiles = False
         else:
             self.downloadFiles = True
-            if os.path.isdir(downloadFolder):
-                self.downloadFolder = downloadFolder
+            if os.path.isdir(downloadfolder):
+                self.downloadFolder = downloadfolder
             else:
-                output_path = Utilities().create_folder_structure(downloadFolder)
+                output_path = Utilities().create_folder_structure(downloadfolder)
                 if not os.path.isdir(output_path):
                     raise ("Directory cannot be made due to OS error, select another path")
                 self.downloadFolder = output_path
