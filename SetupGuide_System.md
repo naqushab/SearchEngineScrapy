@@ -8,8 +8,7 @@ Note: All `grey highlighted` lines are terminal commands. You can do this in a s
 _pip_ is required for the crawler.  
 To Install _pip_,  
 use Command:  
-`sudo easy_install pip`  
-(Type `pip --version` to see if it is installed correctly)  
+`sudo easy_install pip`  (Type `pip --version` to see if it is installed correctly)  
   
   
 ### Setting up crawler  
@@ -42,4 +41,4 @@ To use Bing Search Engine:
   
 ### Downloading the crawled results   
 Files are automatically downloaded and placed in _downloadFolder_ specified. (Uses system curl to achieve this.)  
-if _downloadFolder_ parameter is not specified, the files will not get downloaded and only the URLs are only crawled.
+if _downloadFolder_ parameter is not specified, the files will not get downloaded and only the URLs are crawled.
