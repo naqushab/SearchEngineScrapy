@@ -25,9 +25,9 @@ _Run commands now to crawl the results:_
 Example (To crawl 5 pages of search results for PDFs with keyword 'Machine Learning', store URLs in output_filename.csv and download the files in the downloadFolder mentioned):  
    
 To use Bing Search Engine:  
-`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="bing" -a pages=5 -a downloadFolder=/path/to/download_folder/ -o output_filename.csv`    
+`scrapy crawl SearchEngineScrapy -a searchQuery="Machine Learning" -a fileType="pdf" -a searchEngine="bing" -a pages=5 -a downloadFolder="/Users/neyazee/Documents/SearchEngineScrapy/downloads/" -o output_filename.csv`    
 
-(output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning' and a downloads folder will be created that will have all the files downloaded.)
+(output_filename will contain URLs that are of filetype: pdf and query: 'Machine Learning' and all the files are downloaded to /Users/neyazee/Documents/SearchEngineScrapy/downloads/.)
   
 ### Parameters of the Crawler  
 | Parameter       | Prefix  | Description                                  | Options                       | Required | Default |
@@ -36,9 +36,10 @@ To use Bing Search Engine:
 | fileType         | -a     | Filetype that you want to search for         | pdf/csv/zip/doc/docx/jpeg/png | Y        | -       |
 | searchEngine    | -a     | Search Engine you want to use                | Bing                          | N        | Bing    |
 | pages           | -a     | Number of pages to crawl                     | -                             | N        | 3       |
-| downloadFolder  | -a     | Path to the downloads folder                 | -                             | N        | Downloads folder in working directory       |
+| downloadFolder  | -a     | Path to the downloads folder *_(If not specified, files will not be downloaded)_*  | -                             | N        | -       |
 | output_filename  | -o     | name of output file where results are dumped  | json/jsonl/csv/xml            | N        | -       |
   
   
 ### Downloading the crawled results   
-Files are automatically downloaded and placed in downloads folder (Uses system curl to achieve this.)
+Files are automatically downloaded and placed in _downloadFolder_ specified. (Uses system curl to achieve this.)  
+if _downloadFolder_ parameter is not specified, the files will not get downloaded and only the URLs are only crawled.
