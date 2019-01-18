@@ -59,6 +59,30 @@ def arg_parse():
             }
         })
     parser.add_argument(
+        'output_filename',
+        metavar='Output Filename',
+        help='Enter filename without extension',
+        default='result',
+        gooey_options={
+            'validator': {
+                'test': 'user_input != ""',
+                'message': 'Enter Output Filename'
+            }
+        })
+    parser.add_argument(
+        'output_filetype',
+        metavar='Output File Type',
+        widget='Dropdown',
+        choices=['json', 'jsonl', 'csv', 'xml'],
+        help='Enter output file type',
+        default='csv',
+        gooey_options={
+            'validator': {
+                'test': 'user_input != "Select Option"',
+                'message': 'Choose a filetype from the list'
+            }
+        })
+    parser.add_argument(
         'downloadfolder',
         metavar='Download Folder',
         widget='DirChooser',
@@ -69,7 +93,10 @@ def arg_parse():
 
 if __name__ == '__main__':
     args = arg_parse()
-    process = CrawlerProcess(get_project_settings())
+    project_settings = get_project_settings()
+    project_settings.overrides['FEED_FORMAT'] = args.output_filetype
+    project_settings.overrides['FEED_URI'] = args.output_filename + '.' +  args.output_filetype
+    process = CrawlerProcess(project_settings)
     if args.downloadfolder == "":
         process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=args.filetype, pages=args.pages, searchengine=args.searchengine)
     else:
