@@ -30,7 +30,7 @@ class SearchEngineScrapy(Spider):
             self.searchQuery = "{0} filetype:{1}".format(self.searchQuery, self.fileType)
         self.searchEngine = searchengine.lower()
         self.pages = int(pages)
-        if downloadfolder == "":
+        if downloadfolder == "" or downloadfolder is None:
             self.downloadFiles = False
         else:
             self.downloadFiles = True

@@ -7,7 +7,7 @@ from SearchEngineScrapy.spiders.searchenginespider import SearchEngineScrapy
 from gooey import Gooey, GooeyParser
 
 
-@Gooey( program_name="Search Engine Scrapy")
+@Gooey( program_name="Search Engine Scrapy", default_size=(650, 600))
 def arg_parse():
     parser = GooeyParser(description='Crawl Search Engine Results and optionally download them')
 
@@ -54,7 +54,7 @@ def arg_parse():
         default=3,
         gooey_options={
             'validator': {
-                'test': 'user_input != ""',
+                'test': '0 < int(user_input)',
                 'message': 'Enter page count > 0'
             }
         })
@@ -83,7 +83,8 @@ def arg_parse():
             }
         })
     parser.add_argument(
-        'downloadfolder',
+        '--downloadfolder',
+        dest='downloadfolder',
         metavar='Download Folder',
         widget='DirChooser',
         help='Enter where to save files (Optional)')
