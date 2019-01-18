@@ -52,3 +52,5 @@ venv/
 *.csv
 
 downloads/
+build/
+dist/
