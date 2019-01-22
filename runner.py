@@ -6,8 +6,11 @@ from SearchEngineScrapy.spiders.searchenginespider import SearchEngineScrapy
 
 from gooey import Gooey, GooeyParser
 
+import os
+import urlparse, urllib
 
-@Gooey( program_name="Search Engine Scrapy", default_size=(650, 600))
+
+@Gooey( program_name="Search Engine Scrapy", default_size=(750, 700))
 def arg_parse():
     parser = GooeyParser(description='Crawl Search Engine Results and optionally download them')
 
@@ -82,12 +85,27 @@ def arg_parse():
                 'message': 'Choose a filetype from the list'
             }
         })
+    
     parser.add_argument(
-        '--downloadfolder',
         dest='downloadfolder',
-        metavar='Download Folder',
+        metavar='Output Folder',
         widget='DirChooser',
-        help='Enter where to save files (Optional)')
+        help='Enter where to save results and files')
+
+    parser.add_argument(
+        '--shouldDownload',
+        dest='shouldDownload',
+        metavar='Download Files?',
+        widget='Dropdown',
+        choices=['Yes', 'No'],
+        default='No',
+        help='Do you want to download files? (Optional)',
+        gooey_options={
+            'validator': {
+                'test': 'user_input != "Select Option"',
+                'message': 'Select Yes/No'
+            }
+        })
     
     args = parser.parse_args()
     return args
@@ -95,10 +113,13 @@ def arg_parse():
 if __name__ == '__main__':
     args = arg_parse()
     project_settings = get_project_settings()
+    fileName = args.output_filename + '.' +  args.output_filetype
+    filePath = os.path.join(args.downloadfolder, fileName)
+    feedPath = urlparse.urljoin('file:', urllib.pathname2url(filePath))
     project_settings.overrides['FEED_FORMAT'] = args.output_filetype
-    project_settings.overrides['FEED_URI'] = args.output_filename + '.' +  args.output_filetype
+    project_settings.overrides['FEED_URI'] = feedPath
     process = CrawlerProcess(project_settings)
-    if args.downloadfolder == "":
+    if args.shouldDownload == 'No':
         process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=args.filetype, pages=args.pages, searchengine=args.searchengine)
     else:
         process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=args.filetype, pages=args.pages, searchengine=args.searchengine, downloadfolder=args.downloadfolder)
