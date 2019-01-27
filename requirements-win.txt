@@ -1,5 +1,0 @@
-lxml
-pypiwin32
-Scrapy
-requests
-Gooey 
