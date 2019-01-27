@@ -10,9 +10,9 @@ import os
 import urlparse, urllib
 
 
-@Gooey( program_name="Search Engine Scrapy", default_size=(850, 600))
+@Gooey( program_name="Search Engine Crawler", default_size=(850, 600), required_cols=3)
 def arg_parse():
-    parser = GooeyParser(description='Crawl Search Engine Results and optionally download them')
+    parser = GooeyParser(description='Search and Download PDFs')
 
     parser.add_argument(
         'searchquery',
@@ -23,18 +23,7 @@ def arg_parse():
                 'message': 'Please enter some search query'
             }
         })
-    parser.add_argument(
-        'filetype',
-        metavar='Select File Type to search for',
-        widget='Dropdown',
-        choices=['pdf', 'csv', 'zip', 'doc', 'docx', 'jpeg', 'png'],
-        default='pdf',
-        gooey_options={
-            'validator': {
-                'test': 'user_input != "Select Option"',
-                'message': 'Choose a filetype from the list'
-            }
-        })
+    
     parser.add_argument(
         'searchengine',
         metavar='Select Search Engine',
@@ -47,6 +36,7 @@ def arg_parse():
                 'message': 'Choose a search engine from the list'
             }
         })
+    
     parser.add_argument(
         'pages',
         metavar='Enter number of pages to crawl',
@@ -58,49 +48,12 @@ def arg_parse():
                 'message': 'Enter page count > 0'
             }
         })
-    parser.add_argument(
-        'output_filename',
-        metavar='Output Filename',
-        help='For file with crawled URLs dumped (without extension)',
-        default='urls',
-        gooey_options={
-            'validator': {
-                'test': 'user_input != ""',
-                'message': 'Enter Output Filename'
-            }
-        })
-    parser.add_argument(
-        'output_filetype',
-        metavar='Output File Type',
-        widget='Dropdown',
-        choices=['json', 'jsonl', 'csv', 'xml'],
-        help='File type of the output file',
-        default='csv',
-        gooey_options={
-            'validator': {
-                'test': 'user_input != "Select Option"',
-                'message': 'Choose a filetype from the list'
-            }
-        })
     
     parser.add_argument(
         dest='downloadfolder',
         metavar='Output Folder',
         widget='DirChooser',
         help='Enter where to save results and files')
-
-    parser.add_argument(
-        dest='shouldDownload',
-        metavar='Want to Download Files?',
-        widget='Dropdown',
-        choices=['Yes', 'No'],
-        default='No',
-        gooey_options={
-            'validator': {
-                'test': 'user_input != "Select Option"',
-                'message': 'Select Yes/No'
-            }
-        })
     
     args = parser.parse_args()
     return args
@@ -108,14 +61,16 @@ def arg_parse():
 if __name__ == '__main__':
     args = arg_parse()
     project_settings = get_project_settings()
-    fileName = args.output_filename + '.' +  args.output_filetype
+    shouldDownload = 'Yes'
+    filetype = 'pdf'
+    fileName = 'results_crawled.csv'
     filePath = os.path.join(args.downloadfolder, fileName)
     feedPath = urlparse.urljoin('file:', urllib.pathname2url(filePath))
-    project_settings.overrides['FEED_FORMAT'] = args.output_filetype
+    project_settings.overrides['FEED_FORMAT'] = 'csv'
     project_settings.overrides['FEED_URI'] = feedPath
     process = CrawlerProcess(project_settings)
-    if args.shouldDownload == 'No':
-        process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=args.filetype, pages=args.pages, searchengine=args.searchengine)
+    if shouldDownload == 'No':
+        process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=filetype, pages=args.pages, searchengine=args.searchengine)
     else:
-        process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=args.filetype, pages=args.pages, searchengine=args.searchengine, downloadfolder=args.downloadfolder)
+        process.crawl(SearchEngineScrapy, searchquery=args.searchquery, filetype=filetype, pages=args.pages, searchengine=args.searchengine, downloadfolder=args.downloadfolder)
     process.start()
