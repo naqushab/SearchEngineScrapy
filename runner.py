@@ -72,7 +72,7 @@ if __name__ == '__main__':
     shouldDownload = 'Yes'
     filetype = 'pdf'
 
-    fileName = "{0}{1}".format('Results', args.searchquery)
+    fileName = "{0}_{1}".format('Results', args.searchquery)
     fileName = Utilities().clean_filename(fileName, 'csv', True)
     
     filePath = os.path.join(args.downloadfolder, fileName)

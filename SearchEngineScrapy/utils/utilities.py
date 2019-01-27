@@ -34,7 +34,7 @@ class Utilities:
     def clean_filename(self, fname, fileType, stripSpaces=False):
         fname = re.sub(r'[^.,a-zA-Z0-9]+', ' ', fname)
         if stripSpaces:
-            re.sub(r'\s+', '', fname)
+            fname = re.sub(r'\s+', '_', fname)
         fname = fname.strip()
         if fname.find(".") == -1:
             fname = "{0}.{1}".format(fname, fileType)
