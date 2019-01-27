@@ -3,6 +3,7 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 from SearchEngineScrapy.spiders.searchenginespider import SearchEngineScrapy
+from SearchEngineScrapy.utils.utilities import Utilities
 
 from gooey import Gooey, GooeyParser
 
@@ -70,9 +71,13 @@ if __name__ == '__main__':
     project_settings = get_project_settings()
     shouldDownload = 'Yes'
     filetype = 'pdf'
-    fileName = 'results_crawled.csv'
+
+    fileName = "{0}{1}".format('Results', args.searchquery)
+    fileName = Utilities().clean_filename(fileName, 'csv', True)
+    
     filePath = os.path.join(args.downloadfolder, fileName)
     feedPath = urlparse.urljoin('file:', urllib.pathname2url(filePath))
+    
     project_settings.overrides['FEED_FORMAT'] = 'csv'
     project_settings.overrides['FEED_URI'] = feedPath
     process = CrawlerProcess(project_settings)

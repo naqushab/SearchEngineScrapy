@@ -28,7 +28,13 @@ class Utilities:
             fname = re.findall("filename=(.+)", urlInfo.headers["Content-Disposition"])[0]
         else:
             fname = url.split("/")[-1]
+        fname = self.clean_filename(fname, fileType)
+        return fname
+
+    def clean_filename(self, fname, fileType, stripSpaces=False):
         fname = re.sub(r'[^.,a-zA-Z0-9]+', ' ', fname)
+        if stripSpaces:
+            re.sub(r'\s+', '', fname)
         fname = fname.strip()
         if fname.find(".") == -1:
             fname = "{0}.{1}".format(fname, fileType)
