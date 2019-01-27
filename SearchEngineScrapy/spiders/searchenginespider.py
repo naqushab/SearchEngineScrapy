@@ -8,6 +8,7 @@ from SearchEngineScrapy.utils.utilities import Utilities
 import os
 import subprocess
 import requests
+requests.packages.urllib3.disable_warnings()
 
 class SearchEngineScrapy(Spider):
     name = "SearchEngineScrapy"

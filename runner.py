@@ -10,26 +10,25 @@ import os
 import urlparse, urllib
 
 
-@Gooey( program_name="Search Engine Scrapy", default_size=(750, 700))
+@Gooey( program_name="Search Engine Scrapy", default_size=(850, 600))
 def arg_parse():
     parser = GooeyParser(description='Crawl Search Engine Results and optionally download them')
 
     parser.add_argument(
         'searchquery',
         metavar='Search Query',
-        help='Enter some search query',
         gooey_options={
             'validator': {
                 'test': 'user_input != ""',
-                'message': 'Enter some search query'
+                'message': 'Please enter some search query'
             }
         })
     parser.add_argument(
         'filetype',
-        metavar='File Type',
+        metavar='Select File Type to search for',
         widget='Dropdown',
         choices=['pdf', 'csv', 'zip', 'doc', 'docx', 'jpeg', 'png'],
-        help='Enter file type to search for',
+        default='pdf',
         gooey_options={
             'validator': {
                 'test': 'user_input != "Select Option"',
@@ -38,10 +37,9 @@ def arg_parse():
         })
     parser.add_argument(
         'searchengine',
-        metavar='Search Engine',
+        metavar='Select Search Engine',
         widget='Dropdown',
         choices=['Bing', 'Google'],
-        help='Search Engine to use',
         default='Bing',
         gooey_options={
             'validator': {
@@ -51,10 +49,9 @@ def arg_parse():
         })
     parser.add_argument(
         'pages',
-        metavar='Pages to Crawl',
-        help='Enter number of pages to crawl',
+        metavar='Enter number of pages to crawl',
         type=int,
-        default=3,
+        default=2,
         gooey_options={
             'validator': {
                 'test': '0 < int(user_input)',
@@ -64,8 +61,8 @@ def arg_parse():
     parser.add_argument(
         'output_filename',
         metavar='Output Filename',
-        help='Enter filename without extension',
-        default='result',
+        help='For file with crawled URLs dumped (without extension)',
+        default='urls',
         gooey_options={
             'validator': {
                 'test': 'user_input != ""',
@@ -77,7 +74,7 @@ def arg_parse():
         metavar='Output File Type',
         widget='Dropdown',
         choices=['json', 'jsonl', 'csv', 'xml'],
-        help='Enter output file type',
+        help='File type of the output file',
         default='csv',
         gooey_options={
             'validator': {
@@ -93,13 +90,11 @@ def arg_parse():
         help='Enter where to save results and files')
 
     parser.add_argument(
-        '--shouldDownload',
         dest='shouldDownload',
-        metavar='Download Files?',
+        metavar='Want to Download Files?',
         widget='Dropdown',
         choices=['Yes', 'No'],
         default='No',
-        help='Do you want to download files? (Optional)',
         gooey_options={
             'validator': {
                 'test': 'user_input != "Select Option"',
