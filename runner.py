@@ -10,11 +10,17 @@ import os
 import urlparse, urllib
 
 
-@Gooey( program_name="Search Engine Crawler", default_size=(850, 600), required_cols=3)
+@Gooey( program_name="Search Engine Crawler", default_size=(650, 550), required_cols=3)
 def arg_parse():
     parser = GooeyParser(description='Search and Download PDFs')
+    g = parser.add_argument_group(
+        "Search Options",
+        gooey_options={
+            'columns': 1 
+        }
+    )
 
-    parser.add_argument(
+    g.add_argument(
         'searchquery',
         metavar='Search Query',
         gooey_options={
@@ -24,9 +30,9 @@ def arg_parse():
             }
         })
     
-    parser.add_argument(
+    g.add_argument(
         'searchengine',
-        metavar='Select Search Engine',
+        metavar='Search Engine',
         widget='Dropdown',
         choices=['Bing', 'Google'],
         default='Bing',
@@ -37,9 +43,9 @@ def arg_parse():
             }
         })
     
-    parser.add_argument(
+    g.add_argument(
         'pages',
-        metavar='Enter number of pages to crawl',
+        metavar='Pages to Crawl',
         type=int,
         default=2,
         gooey_options={
@@ -49,11 +55,10 @@ def arg_parse():
             }
         })
     
-    parser.add_argument(
+    g.add_argument(
         dest='downloadfolder',
-        metavar='Output Folder',
-        widget='DirChooser',
-        help='Enter where to save results and files')
+        metavar='Download Location',
+        widget='DirChooser')
     
     args = parser.parse_args()
     return args
