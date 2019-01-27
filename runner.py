@@ -55,8 +55,10 @@ def arg_parse():
             }
         })
     
+    downloadsPath = os.path.join(os.path.expanduser('~'), 'Downloads')
     g.add_argument(
         dest='downloadfolder',
+        default=downloadsPath,
         metavar='Download Location',
         widget='DirChooser')
     
