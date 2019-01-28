@@ -11,12 +11,12 @@ import os
 import urlparse, urllib
 
 
-@Gooey( program_name="Search Engine Crawler", default_size=(650, 550), required_cols=3)
+@Gooey( program_name="Search and Download PDFs", default_size=(650, 500), image_dir='images')
 def arg_parse():
-    parser = GooeyParser(description='Search and Download PDFs')
+    parser = GooeyParser()
     g = parser.add_argument_group(
-        "Search Options",
         gooey_options={
+            'show_border': True,
             'columns': 1 
         }
     )
@@ -27,11 +27,17 @@ def arg_parse():
         gooey_options={
             'validator': {
                 'test': 'user_input != ""',
-                'message': 'Please enter some search query'
+                'message': 'Please enter a search keyword.'
             }
         })
     
-    g.add_argument(
+    h = parser.add_argument_group(
+        gooey_options={
+            'columns': 2 
+        }
+    )
+
+    h.add_argument(
         'searchengine',
         metavar='Search Engine',
         widget='Dropdown',
@@ -44,7 +50,7 @@ def arg_parse():
             }
         })
     
-    g.add_argument(
+    h.add_argument(
         'pages',
         metavar='Pages to Crawl',
         type=int,
@@ -57,7 +63,7 @@ def arg_parse():
         })
     
     downloadsPath = os.path.join(os.path.expanduser('~'), 'Downloads')
-    g.add_argument(
+    h.add_argument(
         dest='downloadfolder',
         default=downloadsPath,
         metavar='Download Location',
